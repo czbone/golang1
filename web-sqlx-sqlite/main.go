@@ -46,7 +46,7 @@ func main() {
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"message": "Welcome to sqlx-sqlite2 API",
+			"message": "Welcome to web-sqlx-sqlite API",
 			"version": "1.0.0",
 			"endpoints": gin.H{
 				"GET /":     "API information",

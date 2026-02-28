@@ -1,4 +1,4 @@
-module sqlx-sqlite2
+module web-sqlx-sqlite
 
 go 1.26
 
