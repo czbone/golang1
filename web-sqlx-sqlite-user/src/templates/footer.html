@@ -1,9 +1,10 @@
 {{ define "footer" }}
   </main>
 
-  <footer class="border-t border-gray-200 bg-white mt-12">
-    <div class="max-w-5xl mx-auto px-4 py-4 text-center text-sm text-gray-400">
-      &copy; {{ .g_year }} {{ .app_name }}
+  <footer class="border-t border-gray-200 bg-white mt-16">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between text-base text-gray-400">
+      <span>&copy; {{ .g_year }} {{ .app_name }}</span>
+      <span>Powered by Go + SQLite</span>
     </div>
   </footer>
 
