@@ -110,6 +110,60 @@ make clean
 
 バイナリ・SQLite ファイル・生成済み CSS を削除します。
 
+---
+
+## `make` を使わない場合
+
+`make` が利用できない環境（Windows など）向けの手順です。
+
+### 初回セットアップ & 起動
+
+```bash
+go mod tidy
+npm install
+npm run build
+go run ./src
+```
+
+### Go バイナリのビルド & 実行
+
+```bash
+npm run build
+go build -o web-sqlx-sqlite-user ./src
+
+./web-sqlx-sqlite-user        # Linux / macOS
+.\web-sqlx-sqlite-user.exe    # Windows
+```
+
+### `go run` で起動（開発時）
+
+```bash
+npm run build
+go run ./src
+```
+
+### CSS のみビルド
+
+```bash
+npm run build
+```
+
+### CSS ウォッチモード（開発時）
+
+```bash
+npm run watch
+```
+
+### 生成物の削除
+
+```bash
+# Linux / macOS
+rm -f web-sqlx-sqlite-user user.sqlite3 public/assets/css/style.css
+
+# Windows (PowerShell)
+Remove-Item -ErrorAction SilentlyContinue web-sqlx-sqlite-user.exe, user.sqlite3, public\assets\css\style.css
+```
+
 ## 環境変数
 
 `.env` ファイルをプロジェクトルートに作成して設定できます。
