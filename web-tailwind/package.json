@@ -1,0 +1,13 @@
+{
+  "name": "web-tailwind",
+  "version": "1.0.0",
+  "description": "Go + Tailwind CSS sample",
+  "scripts": {
+    "build": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify",
+    "watch": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.2.2",
+    "@tailwindcss/cli": "^4.2.2"
+  }
+}
