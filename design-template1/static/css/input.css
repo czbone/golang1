@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@source "../../templates/**/*.html";
+
+/* Preline UI — https://preline.co/docs/index.html */
+@source "../../node_modules/preline/dist/*.js";
+@import "../../node_modules/preline/variants.css";
+
+@plugin "@tailwindcss/forms";
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@custom-variant hover (&:hover);
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Preline HSTooltip: 矢印（プラグインは data-placement を付与） */
+@layer components {
+  .hs-tooltip-content[role="tooltip"] {
+    overflow: visible;
+  }
+
+  .hs-tooltip-content[role="tooltip"]::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ツールチップが上側 → 下向き矢印 */
+  .hs-tooltip-content[role="tooltip"][data-placement^="top"]::after {
+    bottom: -6px;
+    left: 50%;
+    translate: -50% 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #111827;
+  }
+
+  /* ツールチップが下側 → 上向き矢印 */
+  .hs-tooltip-content[role="tooltip"][data-placement^="bottom"]::after {
+    top: -6px;
+    left: 50%;
+    translate: -50% 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #111827;
+  }
+
+  /* ツールチップが左側 → 右向き矢印 */
+  .hs-tooltip-content[role="tooltip"][data-placement^="left"]::after {
+    right: -6px;
+    top: 50%;
+    translate: 0 -50%;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid #111827;
+  }
+
+  /* ツールチップが右側 → 左向き矢印 */
+  .hs-tooltip-content[role="tooltip"][data-placement^="right"]::after {
+    left: -6px;
+    top: 50%;
+    translate: 0 -50%;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid #111827;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .hs-tooltip-content[role="tooltip"][data-placement^="top"]::after {
+      border-top-color: #404040;
+    }
+    .hs-tooltip-content[role="tooltip"][data-placement^="bottom"]::after {
+      border-bottom-color: #404040;
+    }
+    .hs-tooltip-content[role="tooltip"][data-placement^="left"]::after {
+      border-left-color: #404040;
+    }
+    .hs-tooltip-content[role="tooltip"][data-placement^="right"]::after {
+      border-right-color: #404040;
+    }
+  }
+
+  :is(.dark) .hs-tooltip-content[role="tooltip"][data-placement^="top"]::after {
+    border-top-color: #404040;
+  }
+  :is(.dark) .hs-tooltip-content[role="tooltip"][data-placement^="bottom"]::after {
+    border-bottom-color: #404040;
+  }
+  :is(.dark) .hs-tooltip-content[role="tooltip"][data-placement^="left"]::after {
+    border-left-color: #404040;
+  }
+  :is(.dark) .hs-tooltip-content[role="tooltip"][data-placement^="right"]::after {
+    border-right-color: #404040;
+  }
+}

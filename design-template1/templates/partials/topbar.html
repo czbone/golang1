@@ -1,0 +1,21 @@
+{{define "topbar"}}
+<header class="sticky top-0 z-40 flex flex-wrap md:justify-start md:flex-nowrap items-center gap-x-2 w-full h-16 bg-white border-b border-gray-200 px-4 dark:bg-neutral-800 dark:border-neutral-700">
+  <div class="flex items-center gap-x-2 min-w-0">
+    <h1 class="text-base font-semibold text-gray-800 truncate dark:text-white">{{.Title}}</h1>
+  </div>
+
+  <div class="hs-dropdown relative inline-flex ms-auto">
+    <button id="hs-dropdown-user" type="button" class="hs-dropdown-toggle inline-flex items-center gap-x-2 py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-700" aria-haspopup="menu" aria-expanded="false" aria-label="ユーザーメニュー">
+      <span class="inline-flex size-8 items-center justify-center rounded-full bg-indigo-600 text-white text-xs font-semibold">AD</span>
+      <span class="hidden sm:inline text-gray-600 dark:text-neutral-300">管理者</span>
+      <svg class="hs-dropdown-open:rotate-180 size-4 text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+    </button>
+    <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-1 mt-2 dark:bg-neutral-800 dark:border dark:border-neutral-700 z-50" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-user">
+      <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" href="#">プロフィール</a>
+      <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" href="#">アカウント設定</a>
+      <div class="border-t border-gray-200 my-1 dark:border-neutral-700"></div>
+      <button type="button" class="w-full flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:outline-hidden dark:text-red-400 dark:hover:bg-neutral-700" role="menuitem">ログアウト</button>
+    </div>
+  </div>
+</header>
+{{end}}

@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "design-template1: Go で起動",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}",
+      "env": {},
+      "args": []
+    },
+    {
+      "name": "design-template1: CSS ビルド後に Go で起動",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "npm: build"
+    }
+  ]
+}
