@@ -1,0 +1,447 @@
+{{define "admin"}}
+<!DOCTYPE html>
+<html lang="ja" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{.Title}}</title>
+  <link rel="stylesheet" href="/static/css/output.css" />
+</head>
+<body class="h-full bg-gray-50 text-gray-800 dark:bg-neutral-900 dark:text-neutral-200">
+  <div class="flex min-h-full">
+    {{template "sidebar" .}}
+    <div class="flex flex-col flex-1 min-w-0">
+      {{template "topbar" .}}
+
+      <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-8">
+        <div class="flex flex-wrap items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-600 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300" role="note">
+          <span class="font-medium text-gray-800 dark:text-white">スタック:</span>
+          <span class="inline-flex items-center rounded-md bg-sky-600 px-2.5 py-1 text-xs font-semibold text-white">Go</span>
+          <span class="text-gray-400 dark:text-neutral-500">+</span>
+          <span class="inline-flex items-center rounded-md bg-teal-600 px-2.5 py-1 text-xs font-semibold text-white">Tailwind CSS</span>
+          <span class="text-gray-400 dark:text-neutral-500">+</span>
+          <span class="inline-flex items-center rounded-md bg-orange-500 px-2.5 py-1 text-xs font-semibold text-white">Flowbite</span>
+        </div>
+
+        <section aria-labelledby="section-alerts" class="space-y-4">
+          <h2 id="section-alerts" class="text-lg font-semibold text-gray-800 dark:text-white">アラート</h2>
+          <div class="space-y-3 max-w-3xl">
+            <div class="rounded-xl border border-blue-200 bg-blue-50 p-4 dark:border-blue-800/80 dark:bg-blue-950/40" role="alert">
+              <div class="flex gap-3">
+                <span class="flex shrink-0">
+                  <svg class="size-5 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
+                </span>
+                <div class="min-w-0">
+                  <h3 class="text-sm font-semibold text-blue-800 dark:text-blue-200">情報</h3>
+                  <p class="mt-1 text-sm text-blue-700 dark:text-blue-300/90">設定を保存しました。変更は次回ログインから反映されます。</p>
+                </div>
+              </div>
+            </div>
+            <div class="rounded-xl border border-green-200 bg-green-50 p-4 dark:border-green-800/80 dark:bg-green-950/40" role="alert">
+              <div class="flex gap-3">
+                <span class="flex shrink-0">
+                  <svg class="size-5 text-green-600 dark:text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                </span>
+                <div class="min-w-0">
+                  <h3 class="text-sm font-semibold text-green-800 dark:text-green-200">成功</h3>
+                  <p class="mt-1 text-sm text-green-700 dark:text-green-300/90">データのエクスポートが完了しました。</p>
+                </div>
+              </div>
+            </div>
+            <div class="rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-800/80 dark:bg-amber-950/40" role="alert">
+              <div class="flex gap-3">
+                <span class="flex shrink-0">
+                  <svg class="size-5 text-amber-600 dark:text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" /></svg>
+                </span>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-semibold text-amber-800 dark:text-amber-200">注意</h3>
+                  <p class="mt-1 text-sm text-amber-800/90 dark:text-amber-200/90">メンテナンスは本日 22:00 〜 24:00 の予定です。</p>
+                </div>
+              </div>
+            </div>
+            <div class="rounded-xl border border-red-200 bg-red-50 p-4 dark:border-red-800/80 dark:bg-red-950/40" role="alert">
+              <div class="flex gap-3">
+                <span class="flex shrink-0">
+                  <svg class="size-5 text-red-600 dark:text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" /></svg>
+                </span>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-semibold text-red-800 dark:text-red-200">エラー</h3>
+                  <p class="mt-1 text-sm text-red-700 dark:text-red-300/90">接続に失敗しました。しばらくしてから再度お試しください。</p>
+                </div>
+              </div>
+            </div>
+            <div class="rounded-xl border border-gray-200 bg-gray-50 p-4 dark:border-neutral-600 dark:bg-neutral-800/80" role="status">
+              <div class="flex gap-3">
+                <span class="flex shrink-0">
+                  <svg class="size-5 text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+                </span>
+                <div class="min-w-0">
+                  <h3 class="text-sm font-semibold text-gray-800 dark:text-white">ヒント</h3>
+                  <p class="mt-1 text-sm text-gray-600 dark:text-neutral-300">ショートカット <kbd class="rounded border border-gray-300 bg-white px-1.5 py-0.5 text-xs font-mono text-gray-800 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-200">?</kbd> でヘルプを開けます。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="section-tooltips" class="space-y-4">
+          <h2 id="section-tooltips" class="text-lg font-semibold text-gray-800 dark:text-white">ツールチップ</h2>
+          <p class="text-sm text-gray-500 dark:text-neutral-400 max-w-2xl">Flowbite の Tooltip コンポーネント（ホバーで表示。<code class="text-gray-700 dark:text-neutral-300">data-tooltip-target</code> で対象を指定し、<code class="text-gray-700 dark:text-neutral-300">data-tooltip-placement</code> で配置を選択）。矢印は Flowbite が自動で配置します。</p>
+
+          <div>
+            <h3 class="text-sm font-medium text-gray-500 dark:text-neutral-400 mb-3">配置（ホバー）</h3>
+            <div class="flex flex-wrap items-center gap-3">
+              <button data-tooltip-target="tooltip-top" data-tooltip-placement="top" type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700">
+                上（top）
+              </button>
+              <div id="tooltip-top" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-xs font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-neutral-700">
+                上側に表示されるツールチップです。
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+
+              <button data-tooltip-target="tooltip-right" data-tooltip-placement="right" type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700">
+                右（right）
+              </button>
+              <div id="tooltip-right" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-xs font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-neutral-700">
+                右側に表示されます。
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+
+              <button data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700">
+                下（bottom）
+              </button>
+              <div id="tooltip-bottom" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-xs font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-neutral-700">
+                下側に表示されます。
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+
+              <button data-tooltip-target="tooltip-left" data-tooltip-placement="left" type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700">
+                左（left）
+              </button>
+              <div id="tooltip-left" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-xs font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-neutral-700">
+                左側に表示されます。
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium text-gray-500 dark:text-neutral-400 mb-3">クリックで表示</h3>
+            <div class="flex flex-wrap items-center gap-3">
+              <button data-tooltip-target="tooltip-click" data-tooltip-trigger="click" data-tooltip-placement="top" type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-amber-300 bg-amber-50 text-amber-900 hover:bg-amber-100 dark:border-amber-600 dark:bg-amber-950/50 dark:text-amber-100 dark:hover:bg-amber-900/40">
+                クリックで開閉
+              </button>
+              <div id="tooltip-click" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-xs font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-neutral-700">
+                もう一度クリックするか、外側をクリックすると閉じます。
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium text-gray-500 dark:text-neutral-400 mb-3">アイコンボタン＋ツールチップ</h3>
+            <div class="flex flex-wrap items-center gap-2">
+              <button data-tooltip-target="tooltip-help" data-tooltip-placement="top" type="button" class="size-9 inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-700" aria-label="ヘルプ（ツールチップで補足）">
+                <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12V17.25Z" /></svg>
+              </button>
+              <div id="tooltip-help" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-xs font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-neutral-700">
+                この操作は取り消せません。実行前に内容を確認してください。
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="section-buttons" class="space-y-6">
+          <h2 id="section-buttons" class="text-lg font-semibold text-gray-800 dark:text-white">ボタン</h2>
+
+          <div>
+            <h3 class="text-sm font-medium text-gray-500 dark:text-neutral-400 mb-3">ベーシック</h3>
+            <div class="flex flex-wrap items-center gap-3">
+              <button type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-hidden focus:bg-indigo-700">
+                Primary
+              </button>
+              <button type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700">
+                Secondary
+              </button>
+              <button type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-indigo-600 text-indigo-600 hover:border-indigo-700 hover:text-indigo-700 dark:border-indigo-500 dark:text-indigo-400">
+                Outline
+              </button>
+              <button type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 focus:outline-hidden">
+                Danger
+              </button>
+              <button type="button" data-modal-target="admin-demo-modal" data-modal-toggle="admin-demo-modal" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700">
+                モーダルを開く
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium text-gray-500 dark:text-neutral-400 mb-3">カラー（ソリッド）</h3>
+            <div class="flex flex-wrap items-center gap-3">
+              <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 focus:outline-hidden">Emerald</button>
+              <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-sky-600 text-white hover:bg-sky-700 focus:outline-hidden">Sky</button>
+              <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-amber-500 text-gray-900 hover:bg-amber-600 focus:outline-hidden">Amber</button>
+              <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-violet-600 text-white hover:bg-violet-700 focus:outline-hidden">Violet</button>
+              <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-cyan-600 text-white hover:bg-cyan-700 focus:outline-hidden">Cyan</button>
+              <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-orange-600 text-white hover:bg-orange-700 focus:outline-hidden">Orange</button>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium text-gray-500 dark:text-neutral-400 mb-3">ソフト（ライト背景）</h3>
+            <div class="flex flex-wrap items-center gap-3">
+              <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-emerald-100 text-emerald-800 hover:bg-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-200 dark:hover:bg-emerald-900/60">保存</button>
+              <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-sky-100 text-sky-800 hover:bg-sky-200 dark:bg-sky-900/40 dark:text-sky-200 dark:hover:bg-sky-900/60">詳細</button>
+              <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-violet-100 text-violet-800 hover:bg-violet-200 dark:bg-violet-900/40 dark:text-violet-200 dark:hover:bg-violet-900/60">共有</button>
+              <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-amber-100 text-amber-900 hover:bg-amber-200 dark:bg-amber-900/40 dark:text-amber-200 dark:hover:bg-amber-900/60">レビュー</button>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium text-gray-500 dark:text-neutral-400 mb-3">アイコン付き</h3>
+            <div class="flex flex-wrap items-center gap-3">
+              <button type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">
+                <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                ダウンロード
+              </button>
+              <button type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700">
+                <svg class="size-4 shrink-0 text-emerald-600 dark:text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                承認する
+              </button>
+              <button type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-red-600 text-white hover:bg-red-700">
+                <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" /></svg>
+                削除
+              </button>
+              <button type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">
+                次へ
+                <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+              </button>
+              <button type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700">
+                <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 11.664 0l3.181-3.183m-15.815 0-3.182-3.182a8.25 8.25 0 0 1 0-11.664l3.182-3.182" /></svg>
+                更新
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium text-gray-500 dark:text-neutral-400 mb-3">アイコンのみ</h3>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" aria-label="検索" class="size-9 inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 shadow-sm hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700">
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
+              </button>
+              <button type="button" aria-label="お気に入り" class="size-9 inline-flex items-center justify-center rounded-lg bg-rose-600 text-white hover:bg-rose-700">
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+              </button>
+              <button type="button" aria-label="設定" class="size-9 inline-flex items-center justify-center rounded-lg bg-gray-800 text-white hover:bg-gray-900 dark:bg-neutral-700 dark:hover:bg-neutral-600">
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.37.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
+              </button>
+              <button type="button" aria-label="追加" class="size-9 inline-flex items-center justify-center rounded-full bg-indigo-600 text-white hover:bg-indigo-700 shadow-md">
+                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium text-gray-500 dark:text-neutral-400 mb-3">サイズ</h3>
+            <div class="flex flex-wrap items-center gap-3">
+              <button type="button" class="py-1.5 px-3 text-xs font-medium rounded-md bg-indigo-600 text-white hover:bg-indigo-700">Small</button>
+              <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">Medium</button>
+              <button type="button" class="py-3 px-6 text-base font-medium rounded-xl bg-indigo-600 text-white hover:bg-indigo-700">Large</button>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium text-gray-500 dark:text-neutral-400 mb-3">ゴースト / リンク</h3>
+            <div class="flex flex-wrap items-center gap-4">
+              <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-800">キャンセル</button>
+              <button type="button" class="text-sm font-semibold text-indigo-600 underline-offset-4 hover:underline dark:text-indigo-400">詳細ドキュメント</button>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="section-modals" class="space-y-4">
+          <h2 id="section-modals" class="text-lg font-semibold text-gray-800 dark:text-white">モーダル</h2>
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- 基本 -->
+            <button type="button" data-modal-target="modal-basic" data-modal-toggle="modal-basic"
+              class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700">
+              <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
+              基本
+            </button>
+            <!-- 削除確認 -->
+            <button type="button" data-modal-target="modal-delete-confirm" data-modal-toggle="modal-delete-confirm"
+              class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-red-600 text-white hover:bg-red-700">
+              <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" /></svg>
+              削除確認
+            </button>
+            <!-- フォーム -->
+            <button type="button" data-modal-target="modal-form" data-modal-toggle="modal-form"
+              class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">
+              <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
+              フォーム
+            </button>
+          </div>
+        </section>
+
+        <section aria-labelledby="section-table">
+          <div class="flex flex-wrap items-end justify-between gap-4 mb-4">
+            <h2 id="section-table" class="text-lg font-semibold text-gray-800 dark:text-white">ユーザー一覧</h2>
+            <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+              新規作成
+            </button>
+          </div>
+
+          <div class="flex flex-col">
+            <div class="-m-1.5 overflow-x-auto">
+              <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class="overflow-hidden border border-gray-200 rounded-xl shadow-sm dark:border-neutral-700">
+                  <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+                    <thead class="bg-gray-50 dark:bg-neutral-800/50">
+                      <tr>
+                        <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400">ID</th>
+                        <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400">名前</th>
+                        <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400">ロール</th>
+                        <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400">ステータス</th>
+                        <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-400">操作</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+                      {{range .Rows}}
+                      <tr class="hover:bg-gray-50 dark:hover:bg-neutral-800/80">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-600 dark:text-neutral-300">{{.ID}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-white">{{.Name}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-neutral-300">{{.Role}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          {{if eq .Status "有効"}}
+                          <span class="inline-flex items-center gap-x-1.5 py-1 px-2.5 rounded-full text-xs font-medium bg-green-600 text-white">有効</span>
+                          {{else}}
+                          <span class="inline-flex items-center gap-x-1.5 py-1 px-2.5 rounded-full text-xs font-medium bg-gray-600 text-white dark:bg-neutral-600">停止</span>
+                          {{end}}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-end text-sm">
+                          <button type="button" class="text-indigo-600 hover:text-indigo-800 font-medium dark:text-indigo-400 dark:hover:text-indigo-300">編集</button>
+                          <span class="text-gray-300 dark:text-neutral-600 mx-2">|</span>
+                          <button type="button" class="text-red-600 hover:text-red-800 font-medium dark:text-red-400">削除</button>
+                        </td>
+                      </tr>
+                      {{end}}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- modal-basic: 基本モーダル -->
+  <div id="modal-basic" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-lg max-h-full">
+      <div class="relative bg-white rounded-xl shadow-2xl border border-gray-200 dark:bg-neutral-900 dark:border-neutral-700">
+        <div class="flex items-center justify-between p-5 border-b border-gray-200 dark:border-neutral-700">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">モーダルタイトル</h3>
+          <button type="button" class="size-8 inline-flex justify-center items-center rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-200" data-modal-hide="modal-basic" aria-label="閉じる">
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+        <div class="p-5 space-y-3">
+          <p class="text-gray-600 dark:text-neutral-300">Flowbite の基本モーダルです。<code class="text-sm bg-gray-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded text-gray-700 dark:text-neutral-300">data-modal-target</code> と <code class="text-sm bg-gray-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded text-gray-700 dark:text-neutral-300">data-modal-toggle</code> でトリガーし、<code class="text-sm bg-gray-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded text-gray-700 dark:text-neutral-300">data-modal-hide</code> で閉じます。</p>
+          <p class="text-sm text-gray-500 dark:text-neutral-400">背景クリックでも閉じることができます。</p>
+        </div>
+        <div class="flex justify-end gap-x-2 p-5 border-t border-gray-200 dark:border-neutral-700">
+          <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700" data-modal-hide="modal-basic">閉じる</button>
+          <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700" data-modal-hide="modal-basic">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal-delete-confirm: 削除確認モーダル -->
+  <div id="modal-delete-confirm" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+      <div class="relative bg-white rounded-xl shadow-2xl border border-gray-200 dark:bg-neutral-900 dark:border-neutral-700">
+        <div class="p-6 text-center">
+          <div class="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30">
+            <svg class="size-6 text-red-600 dark:text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" /></svg>
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-gray-800 dark:text-white">本当に削除しますか？</h3>
+          <p class="mb-5 text-sm text-gray-500 dark:text-neutral-400">この操作は取り消せません。データは永久に削除されます。</p>
+          <div class="flex justify-center gap-x-3">
+            <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700" data-modal-hide="modal-delete-confirm">キャンセル</button>
+            <button type="button" class="py-2 px-4 text-sm font-medium rounded-lg bg-red-600 text-white hover:bg-red-700" data-modal-hide="modal-delete-confirm">削除する</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal-form: フォームモーダル -->
+  <div id="modal-form" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-lg max-h-full">
+      <div class="relative bg-white rounded-xl shadow-2xl border border-gray-200 dark:bg-neutral-900 dark:border-neutral-700">
+        <div class="flex items-center justify-between p-5 border-b border-gray-200 dark:border-neutral-700">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-white">ユーザー編集</h3>
+          <button type="button" class="size-8 inline-flex justify-center items-center rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-200" data-modal-hide="modal-form" aria-label="閉じる">
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+        <form class="p-5 space-y-4">
+          <div>
+            <label for="modal-name" class="block mb-1.5 text-sm font-medium text-gray-700 dark:text-neutral-300">名前</label>
+            <input type="text" id="modal-name" placeholder="山田 太郎" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-800 placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 dark:border-neutral-600 dark:bg-neutral-800 dark:text-white dark:placeholder-neutral-500" />
+          </div>
+          <div>
+            <label for="modal-email" class="block mb-1.5 text-sm font-medium text-gray-700 dark:text-neutral-300">メールアドレス</label>
+            <input type="email" id="modal-email" placeholder="example@example.com" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-800 placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 dark:border-neutral-600 dark:bg-neutral-800 dark:text-white dark:placeholder-neutral-500" />
+          </div>
+          <div>
+            <label for="modal-role" class="block mb-1.5 text-sm font-medium text-gray-700 dark:text-neutral-300">ロール</label>
+            <select id="modal-role" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-800 focus:border-indigo-500 focus:ring-indigo-500 dark:border-neutral-600 dark:bg-neutral-800 dark:text-white">
+              <option value="">選択してください</option>
+              <option>管理者</option>
+              <option>編集者</option>
+              <option>開覧者</option>
+            </select>
+          </div>
+        </form>
+        <div class="flex justify-end gap-x-2 p-5 border-t border-gray-200 dark:border-neutral-700">
+          <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700" data-modal-hide="modal-form">キャンセル</button>
+          <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700" data-modal-hide="modal-form">保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 旧 admin-demo-modal (ボタンセクションから開く) -->
+  <div id="admin-demo-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-lg max-h-full">
+      <div class="relative bg-white rounded-xl shadow-2xl border border-gray-200 dark:bg-neutral-900 dark:border-neutral-700">
+        <div class="flex items-center justify-between p-5 border-b border-gray-200 dark:border-neutral-700">
+          <h3 id="admin-demo-modal-label" class="text-lg font-semibold text-gray-800 dark:text-white">確認</h3>
+          <button type="button" class="size-8 inline-flex justify-center items-center rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-200" data-modal-hide="admin-demo-modal" aria-label="閉じる">
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+        <div class="p-5">
+          <p class="text-gray-600 dark:text-neutral-300">Flowbite のモーダルコンポーネントのデモです。背景クリックまたは閉じるボタンで閉じられます。</p>
+        </div>
+        <div class="flex justify-end gap-x-2 p-5 border-t border-gray-200 dark:border-neutral-700">
+          <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700" data-modal-hide="admin-demo-modal">
+            閉じる
+          </button>
+          <button type="button" class="py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">
+            実行
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/flowbite.min.js"></script>
+</body>
+</html>
+{{end}}

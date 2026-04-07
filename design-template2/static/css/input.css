@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@source "../../templates/**/*.html";
+
+/* Flowbite v4 — https://flowbite.com/docs/getting-started/introduction/ */
+@import "flowbite/src/themes/default";
+@source "../../node_modules/flowbite";
+@plugin "flowbite/plugin";
+
+@plugin "@tailwindcss/forms";
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@custom-variant hover (&:hover);
+
+html {
+  scroll-behavior: smooth;
+}
+
