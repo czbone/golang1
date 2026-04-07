@@ -15,127 +15,136 @@
         
         <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
             <div class="max-w-7xl mx-auto">
-<div class="space-y-8">
-    <!-- Page Header -->
-    <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Tables</h1>
-        <p class="text-gray-600 dark:text-gray-400">Use tables to organize and display data in a structured format with rows and columns.</p>
+<div class="space-y-14">
+    <div class="mb-6">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">テーブルデザイン</h1>
+        <p class="text-gray-600 dark:text-gray-300">視認性と操作性を高めた、実用的なテーブルのサンプルです。すべての見出しとデータを日本語で統一しています。</p>
     </div>
 
-    <!-- Default Table -->
-    <section id="default" class="scroll-mt-20">
-        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Default Table</h2>
-        <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <section id="default" class="scroll-mt-20 space-y-4 mb-12">
+        <div class="flex items-center justify-between gap-3">
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">販売商品一覧</h2>
+            <span class="inline-flex items-center rounded-full bg-teal-100 px-3 py-1 text-xs font-semibold text-teal-700 dark:bg-teal-500/20 dark:text-teal-300">標準テーブル</span>
+        </div>
+        <div class="relative overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
+            <table class="w-full text-sm text-left text-gray-600 dark:text-gray-300">
+                <thead class="bg-gray-100 text-xs uppercase tracking-wider text-gray-700 dark:bg-gray-700 dark:text-gray-200">
                     <tr>
-                        <th scope="col" class="px-6 py-3">Product name</th>
-                        <th scope="col" class="px-6 py-3">Color</th>
-                        <th scope="col" class="px-6 py-3">Category</th>
-                        <th scope="col" class="px-6 py-3">Price</th>
+                        <th scope="col" class="px-6 py-4">商品名</th>
+                        <th scope="col" class="px-6 py-4">カテゴリ</th>
+                        <th scope="col" class="px-6 py-4">在庫数</th>
+                        <th scope="col" class="px-6 py-4">単価</th>
+                        <th scope="col" class="px-6 py-4">販売状況</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Apple MacBook Pro 17"</th>
-                        <td class="px-6 py-4">Silver</td>
-                        <td class="px-6 py-4">Laptop</td>
-                        <td class="px-6 py-4">$2999</td>
+                <tbody class="divide-y divide-gray-100 dark:divide-gray-700/50">
+                    <tr class="transition-colors hover:bg-teal-50/60 dark:hover:bg-gray-700/60">
+                        <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">ワイヤレスイヤホン Pro</th>
+                        <td class="px-6 py-4">オーディオ</td>
+                        <td class="px-6 py-4">124</td>
+                        <td class="px-6 py-4">12,800円</td>
+                        <td class="px-6 py-4"><span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">販売中</span></td>
                     </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Microsoft Surface Pro</th>
-                        <td class="px-6 py-4">White</td>
-                        <td class="px-6 py-4">Laptop PC</td>
-                        <td class="px-6 py-4">$1999</td>
+                    <tr class="transition-colors hover:bg-teal-50/60 dark:hover:bg-gray-700/60">
+                        <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">スマートウォッチ Air</th>
+                        <td class="px-6 py-4">ウェアラブル</td>
+                        <td class="px-6 py-4">68</td>
+                        <td class="px-6 py-4">22,400円</td>
+                        <td class="px-6 py-4"><span class="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">残りわずか</span></td>
+                    </tr>
+                    <tr class="transition-colors hover:bg-teal-50/60 dark:hover:bg-gray-700/60">
+                        <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">薄型モバイルバッテリー</th>
+                        <td class="px-6 py-4">アクセサリー</td>
+                        <td class="px-6 py-4">0</td>
+                        <td class="px-6 py-4">4,200円</td>
+                        <td class="px-6 py-4"><span class="rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700 dark:bg-rose-500/20 dark:text-rose-300">入荷待ち</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="striped" class="mt-10 scroll-mt-20 space-y-4 mb-12">
+        <div class="flex items-center justify-between gap-3">
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">月次売上レポート</h2>
+            <span class="inline-flex items-center rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold text-sky-700 dark:bg-sky-500/20 dark:text-sky-300">ストライプ行</span>
+        </div>
+        <div class="relative overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
+            <table class="w-full text-sm text-left text-gray-600 dark:text-gray-300">
+                <thead class="bg-gray-100 text-xs uppercase tracking-wider text-gray-700 dark:bg-gray-700 dark:text-gray-200">
+                    <tr>
+                        <th scope="col" class="px-6 py-4">月</th>
+                        <th scope="col" class="px-6 py-4">受注件数</th>
+                        <th scope="col" class="px-6 py-4">売上高</th>
+                        <th scope="col" class="px-6 py-4">前月比</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 dark:divide-gray-700/50">
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">2026年1月</th>
+                        <td class="px-6 py-4">312件</td>
+                        <td class="px-6 py-4">4,830,000円</td>
+                        <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400">+8.2%</td>
+                    </tr>
+                    <tr class="bg-gray-50 dark:bg-gray-900/50">
+                        <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">2026年2月</th>
+                        <td class="px-6 py-4">287件</td>
+                        <td class="px-6 py-4">4,420,000円</td>
+                        <td class="px-6 py-4 text-rose-600 dark:text-rose-400">-8.5%</td>
                     </tr>
                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Magic Mouse 2</th>
-                        <td class="px-6 py-4">Black</td>
-                        <td class="px-6 py-4">Accessories</td>
-                        <td class="px-6 py-4">$99</td>
+                        <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">2026年3月</th>
+                        <td class="px-6 py-4">346件</td>
+                        <td class="px-6 py-4">5,140,000円</td>
+                        <td class="px-6 py-4 text-emerald-600 dark:text-emerald-400">+16.3%</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <!-- Striped Table -->
-    <section id="striped" class="scroll-mt-20">
-        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Striped Rows</h2>
-        <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">Product name</th>
-                        <th scope="col" class="px-6 py-3">Color</th>
-                        <th scope="col" class="px-6 py-3">Category</th>
-                        <th scope="col" class="px-6 py-3">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Apple MacBook Pro 17"</th>
-                        <td class="px-6 py-4">Silver</td>
-                        <td class="px-6 py-4">Laptop</td>
-                        <td class="px-6 py-4">$2999</td>
-                    </tr>
-                    <tr class="bg-gray-50 border-b dark:bg-gray-900 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Microsoft Surface Pro</th>
-                        <td class="px-6 py-4">White</td>
-                        <td class="px-6 py-4">Laptop PC</td>
-                        <td class="px-6 py-4">$1999</td>
-                    </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Magic Mouse 2</th>
-                        <td class="px-6 py-4">Black</td>
-                        <td class="px-6 py-4">Accessories</td>
-                        <td class="px-6 py-4">$99</td>
-                    </tr>
-                </tbody>
-            </table>
+    <section id="hover" class="mt-10 scroll-mt-20 space-y-4">
+        <div class="flex items-center justify-between gap-3">
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">チームタスク管理</h2>
+            <span class="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300">操作付きテーブル</span>
         </div>
-    </section>
-
-    <!-- Hover Table -->
-    <section id="hover" class="scroll-mt-20">
-        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Hoverable Rows</h2>
-        <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div class="relative overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
+            <table class="w-full text-sm text-left text-gray-600 dark:text-gray-300">
+                <thead class="bg-gray-100 text-xs uppercase tracking-wider text-gray-700 dark:bg-gray-700 dark:text-gray-200">
                     <tr>
-                        <th scope="col" class="px-6 py-3">Product name</th>
-                        <th scope="col" class="px-6 py-3">Color</th>
-                        <th scope="col" class="px-6 py-3">Category</th>
-                        <th scope="col" class="px-6 py-3">Price</th>
-                        <th scope="col" class="px-6 py-3"><span class="sr-only">Edit</span></th>
+                        <th scope="col" class="px-6 py-4">担当者</th>
+                        <th scope="col" class="px-6 py-4">タスク名</th>
+                        <th scope="col" class="px-6 py-4">期限</th>
+                        <th scope="col" class="px-6 py-4">進捗</th>
+                        <th scope="col" class="px-6 py-4"><span class="sr-only">操作</span></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Apple MacBook Pro 17"</th>
-                        <td class="px-6 py-4">Silver</td>
-                        <td class="px-6 py-4">Laptop</td>
-                        <td class="px-6 py-4">$2999</td>
+                <tbody class="divide-y divide-gray-100 dark:divide-gray-700/50">
+                    <tr class="transition-colors hover:bg-indigo-50 dark:hover:bg-gray-700/70">
+                        <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">佐藤 真理</th>
+                        <td class="px-6 py-4">ランディングページ改善</td>
+                        <td class="px-6 py-4">4月12日</td>
+                        <td class="px-6 py-4">80%</td>
                         <td class="px-6 py-4 text-right">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-800 hover:underline dark:text-indigo-400 dark:hover:text-indigo-300">詳細</a>
                         </td>
                     </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Microsoft Surface Pro</th>
-                        <td class="px-6 py-4">White</td>
-                        <td class="px-6 py-4">Laptop PC</td>
-                        <td class="px-6 py-4">$1999</td>
+                    <tr class="transition-colors hover:bg-indigo-50 dark:hover:bg-gray-700/70">
+                        <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">鈴木 大輔</th>
+                        <td class="px-6 py-4">決済画面の文言修正</td>
+                        <td class="px-6 py-4">4月10日</td>
+                        <td class="px-6 py-4">45%</td>
                         <td class="px-6 py-4 text-right">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-800 hover:underline dark:text-indigo-400 dark:hover:text-indigo-300">詳細</a>
                         </td>
                     </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Magic Mouse 2</th>
-                        <td class="px-6 py-4">Black</td>
-                        <td class="px-6 py-4">Accessories</td>
-                        <td class="px-6 py-4">$99</td>
+                    <tr class="transition-colors hover:bg-indigo-50 dark:hover:bg-gray-700/70">
+                        <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white">高橋 由衣</th>
+                        <td class="px-6 py-4">FAQセクション追加</td>
+                        <td class="px-6 py-4">4月15日</td>
+                        <td class="px-6 py-4">20%</td>
                         <td class="px-6 py-4 text-right">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-800 hover:underline dark:text-indigo-400 dark:hover:text-indigo-300">詳細</a>
                         </td>
                     </tr>
                 </tbody>
