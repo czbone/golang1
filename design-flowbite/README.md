@@ -1,112 +1,124 @@
-# design-template2
+# design-flowbite
 
-Go 標準ライブラリだけで動く管理画面向けの **デザインテンプレート** です。フロントは **Tailwind CSS v4** と **Flowbite v4** でコンポーネントの見た目と挙動をそろえています。
+Go 標準ライブラリで動作する、Flowbite コンポーネントカタログです。  
+バックエンドは Go (`net/http`, `html/template`) のみ、フロントは Tailwind CSS v4 + Flowbite v4 で構成しています。
 
 ## 技術スタック
 
 | 領域 | 内容 |
 |------|------|
-| バックエンド | Go 1.21+、`net/http`、`html/template`（外部 Go 依存なし） |
+| バックエンド | Go 1.21+、`net/http`、`html/template` |
 | スタイル | Tailwind CSS v4、`@tailwindcss/cli` |
-| コンポーネント基盤 | [Flowbite v4](https://flowbite.com/)（`flowbite` npm パッケージ） |
-| フォーム用 | `@tailwindcss/forms` |
+| UI コンポーネント | [Flowbite v4](https://flowbite.com/) (`flowbite` npm パッケージ) |
+| フォーム補助 | `@tailwindcss/forms` |
 
-インタラクティブな部品（ドロップダウン、モーダル、ツールチップなど）は Flowbite の `flowbite.min.js`（ビルド時に `static/js/` へコピー）で初期化されます。
+Flowbite のインタラクション（ドロップダウン、モーダル、ツールチップなど）は `static/js/flowbite.min.js` で有効化されます。  
+このファイルは `npm run build` 時に `scripts/copy-flowbite.js` で `node_modules` からコピーされます。
 
-## 画面仕様（デモページ）
+## 画面仕様
 
-`GET /` で **1 枚の管理画面デモ**を表示します。
+### 1. コンポーネント一覧 (`GET /`)
 
-- **レイアウト**: 左サイドバー（ナビ）＋上部バー（タイトル・ユーザードロップダウン）＋メインエリア
-- **スタック表記**: Go / Tailwind CSS / Flowbite（**ソリッド**のバッジ表現）
-- **アラート**: 情報・成功・注意・エラー・ヒント（見た目のバリエーション）
-- **ツールチップ**: Flowbite Tooltip（`data-tooltip-target`、`data-tooltip-placement`、`data-tooltip-trigger`）。矢印は Flowbite が自動で配置
-- **ボタン**: ベーシック／カラー（ソリッド）／ソフト／アイコン付き／アイコンのみ／サイズ／ゴースト・リンク
-- **テーブル**: ユーザー一覧サンプル（`main.go` から渡すダミーデータ）、ステータスはソリッドバッジ
-- **モーダル**: Flowbite Modal（`data-modal-target`、`data-modal-toggle`、`data-modal-hide`）
-- **ドロップダウン**: Flowbite Dropdown（`data-dropdown-toggle`）
+- Hero + カテゴリカードの一覧画面
+- 各カードからカテゴリ別デモページへ遷移
+- ヘッダーのカテゴリナビ（デスクトップ）とドロワー（モバイル）
 
-テンプレートは `templates` 以下の `.html` を再帰的に読み込み、`{{define "admin"}}` を `ExecuteTemplate(..., "admin", data)` で描画します。
+### 2. カテゴリ別コンポーネントページ (`GET /components/{category}`)
+
+- 左側（LG 以上）にページ内セクションナビ
+- 各カテゴリごとに複数の実装例を掲載
+- `#section-id` でページ内ジャンプ可能
+
+対応カテゴリ:
+
+- `buttons`
+- `forms`
+- `cards`
+- `alerts`
+- `modals`
+- `badges`
+- `tooltips`
+- `progress`
+- `dropdowns`
+- `tabs`
+- `breadcrumbs`
+- `pagination`
+- `tables`
+- `accordion`
+
+テンプレートは `templates/**/*.html` を再帰読み込みし、`ExecuteTemplate` で以下の名前を描画します。
+
+- 一覧: `components-index`
+- カテゴリ: `components-{category}`（例: `components-buttons`）
 
 ## ディレクトリ構成
 
 ```
-design-template2/
-├── main.go                  # HTTP サーバ・ルーティング
+design-flowbite/
+├── main.go
 ├── go.mod
-├── package.json             # npm スクリプト・Tailwind / Flowbite 依存
+├── package.json
 ├── scripts/
-│   └── copy-flowbite.js     # flowbite.min.js を static/js へコピー
+│   ├── copy-flowbite.js
+│   └── translate-components-ja.ps1
 ├── static/
 │   ├── css/
-│   │   ├── input.css        # Tailwind エントリ（@source / Flowbite テーマ・プラグインなど）
-│   │   └── output.css       # ビルド成果物（リポジトリに含める想定）
+│   │   ├── input.css
+│   │   └── output.css
 │   └── js/
-│       └── flowbite.min.js  # npm run build 時に生成（コピー）
+│       └── flowbite.min.js
 ├── templates/
-│   ├── admin.html
+│   ├── components/
+│   │   ├── index.html
+│   │   ├── buttons.html
+│   │   ├── forms.html
+│   │   └── ...
 │   └── partials/
-│       ├── sidebar.html
-│       └── topbar.html
-├── .vscode/
-│   ├── launch.json          # 実行とデバッグ用
-│   └── tasks.json           # npm: build タスク
+│       ├── components-header.html
+│       └── components-sidenav.html
 └── README.md
 ```
 
 ## 必要な環境
 
 - Go 1.21 以上
-- Node.js / npm（CSS ビルドと Flowbite JS のコピー用）
+- Node.js / npm
 
 ## セットアップと起動
 
 ```bash
-cd design-template2
+cd design-flowbite
 npm install
-npm run build    # Tailwind → output.css、flowbite.min.js を static/js にコピー
+npm run build
 go run .
 ```
 
 ブラウザで `http://localhost:8080/` を開きます。
 
-### ポート
+## npm スクリプト
 
-既定は **`:8080`**（[`main.go`](main.go) の `addr`）。変更する場合はこの1箇所を編集してください。
+- `npm run build:css`: Tailwind をビルドして `static/css/output.css` を生成
+- `npm run copy:flowbite`: `flowbite.min.js` を `static/js/` へコピー
+- `npm run build`: CSS ビルド + Flowbite JS コピー
+- `npm run watch`: CSS をウォッチビルド
 
-### CSS の開発
-
-- 一回ビルド: `npm run build`
-- ウォッチ（保存のたびに `output.css` 更新）: `npm run watch`
-
-HTML やクラスを増やしたあとは、ウォッチまたは `npm run build` で `output.css` を再生成してください。`input.css` の `@source` で `templates/**/*.html` と `node_modules/flowbite` をスキャンしています。
-
-## VS Code / Cursor（実行とデバッグ）
-
-ワークスペースのルートを **`design-template2` フォルダ**にしたうえで利用してください（`${workspaceFolder}` がテンプレートと `static` を指す必要があります）。
-
-| 構成名 | 内容 |
-|--------|------|
-| **design-template2: Go で起動** | Go のデバッグ起動のみ |
-| **design-template2: CSS ビルド後に Go で起動** | `npm: build`（`tasks.json`）のあと Go 起動 |
-
-Go 拡張機能（例: 公式 [Go](https://marketplace.visualstudio.com/items?itemName=golang.go)）が必要です。
+`static/css/input.css` では `@source "../../templates/**/*.html"` と `@source "../../node_modules/flowbite"` を指定してクラス抽出しています。
 
 ## HTTP ルート
 
 | メソッド・パス | 説明 |
 |----------------|------|
-| `GET /` | 管理画面デモ（`admin` テンプレート） |
-| `GET /static/*` | 静的ファイル（CSS・JS） |
+| `GET /` | コンポーネント一覧 (`components-index`) |
+| `GET /components` | `/` へリダイレクト |
+| `GET /components/{category}` | カテゴリページ (`components-{category}`) |
+| `GET /static/*` | 静的ファイル配信 |
 | その他 | `404` |
 
-## スタイル・挙動のカスタムメモ
+## ポート
 
-- **Preline 公式の Tailwind v4 手順**: `@import "tailwindcss"`、`@source` で Preline の JS、`variants.css`、`@plugin "@tailwindcss/forms"`（詳細は [Preline Quick setup](https://preline.co/docs/index.html)）
-- **ツールチップの矢印**: `static/css/input.css` の `@layer components`（`[data-placement^="top"]` など）。色はライトで `#111827`、ダークで `#404040`（`prefers-color-scheme` と `.dark` 両対応）
-- **バッジ**: 画面上のスタック表記・テーブルステータス・トップバーアバターは **ソリッド**（濃色背景＋白文字）で統一
+既定は `:8080`（`main.go` の `addr`）。必要に応じて変更してください。
 
 ## ライセンス・クレジット
 
 - アプリケーションコード: このリポジトリの方針に従ってください。
-- [Preline UI](https://preline.co/) は独自のライセンス条項があります。利用前に [Preline ライセンス](https://preline.co/docs/license.html) を確認してください。
+- Flowbite の利用条件は公式ドキュメントを確認してください。
