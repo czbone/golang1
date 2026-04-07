@@ -1,0 +1,160 @@
+﻿{{define "components-forms"}}
+<!DOCTYPE html>
+<html lang="ja" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PageTitle}} - Flowbiteコンポーネント一覧</title>
+    <link rel="stylesheet" href="/static/css/output.css">
+</head>
+<body class="h-full bg-gray-50 dark:bg-neutral-900">
+    {{template "components-header" .}}
+    
+    <div class="flex pt-16">
+        {{template "components-sidenav" .}}
+        
+        <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
+            <div class="max-w-7xl mx-auto">
+<div class="space-y-8">
+    <!-- Page Header -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Forms</h1>
+        <p class="text-gray-600 dark:text-gray-400">Use form elements like text inputs, textareas, checkboxes, radio buttons, file uploads, and more.</p>
+    </div>
+
+    <!-- Text Inputs -->
+    <section id="inputs" class="scroll-mt-20">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Text Inputs</h2>
+        <div class="p-6 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700 space-y-4">
+            <div>
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@example.com" required>
+            </div>
+            <div>
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+                <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="••••••••" required>
+            </div>
+            <div>
+                <label for="disabled-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Disabled input</label>
+                <input type="text" id="disabled-input" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-neutral-600 dark:border-neutral-500 dark:placeholder-gray-400 dark:text-gray-400" value="Disabled value" disabled readonly>
+            </div>
+        </div>
+    </section>
+
+    <!-- Input Sizes -->
+    <section id="input-sizes" class="scroll-mt-20">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Input Sizes</h2>
+        <div class="p-6 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700 space-y-4">
+            <div>
+                <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Small input</label>
+                <input type="text" id="small-input" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div>
+                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Base input</label>
+                <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div>
+                <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Large input</label>
+                <input type="text" id="large-input" class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+        </div>
+    </section>
+
+    <!-- Textarea -->
+    <section id="textarea" class="scroll-mt-20">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Textarea</h2>
+        <div class="p-6 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700">
+            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
+            <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+        </div>
+    </section>
+
+    <!-- Select -->
+    <section id="select" class="scroll-mt-20">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Select</h2>
+        <div class="p-6 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700">
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your country</label>
+            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Choose a country</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+                <option value="JP">Japan</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Checkboxes -->
+    <section id="checkbox" class="scroll-mt-20">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Checkboxes</h2>
+        <div class="p-6 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700 space-y-3">
+            <div class="flex items-center">
+                <input id="checkbox-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-neutral-700 dark:border-neutral-600">
+                <label for="checkbox-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree to the terms and conditions</label>
+            </div>
+            <div class="flex items-center">
+                <input checked id="checkbox-2" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-neutral-700 dark:border-neutral-600">
+                <label for="checkbox-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I want to get promotional offers</label>
+            </div>
+            <div class="flex items-center">
+                <input id="checkbox-3" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-neutral-700 dark:border-neutral-600">
+                <label for="checkbox-3" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I am eligible to work in the US</label>
+            </div>
+        </div>
+    </section>
+
+    <!-- Radio Buttons -->
+    <section id="radio" class="scroll-mt-20">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Radio Buttons</h2>
+        <div class="p-6 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700 space-y-3">
+            <div class="flex items-center">
+                <input checked id="radio-1" type="radio" name="payment" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-neutral-700 dark:border-neutral-600">
+                <label for="radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Credit Card</label>
+            </div>
+            <div class="flex items-center">
+                <input id="radio-2" type="radio" name="payment" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-neutral-700 dark:border-neutral-600">
+                <label for="radio-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">PayPal</label>
+            </div>
+            <div class="flex items-center">
+                <input id="radio-3" type="radio" name="payment" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-neutral-700 dark:border-neutral-600">
+                <label for="radio-3" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Bank Transfer</label>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toggle Switch -->
+    <section id="toggle" class="scroll-mt-20">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Toggle Switch</h2>
+        <div class="p-6 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700 space-y-4">
+            <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" value="" class="sr-only peer">
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-blue-600"></div>
+                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
+            </label>
+            <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" value="" class="sr-only peer" checked>
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-blue-600"></div>
+                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Checked toggle</span>
+            </label>
+        </div>
+    </section>
+
+    <!-- File Input -->
+    <section id="file" class="scroll-mt-20">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">File Input</h2>
+        <div class="p-6 bg-white dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
+            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400" id="file_input" type="file">
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+        </div>
+    </section>
+</div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="/static/js/flowbite.min.js"></script>
+</body>
+</html>
+{{end}}

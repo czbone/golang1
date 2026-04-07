@@ -1,0 +1,255 @@
+{{define "components-header"}}
+<header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-neutral-800 border-b border-gray-200 dark:border-neutral-700">
+    <nav class="px-4 lg:px-6 py-3">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <a href="/" class="flex items-center space-x-3">
+                    <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                    </svg>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">コンポーネント一覧</span>
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-1">
+                {{range .Categories}}
+                <a href="/components/{{.ID}}" 
+                   class="px-3 py-2 rounded-lg text-sm font-medium transition-colors
+                          {{if eq $.CurrentCategory .ID}}
+                          bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300
+                          {{else}}
+                          text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700
+                          {{end}}">
+                    {{.Name}}
+                </a>
+                {{end}}
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" type="button" 
+                    class="md:hidden p-2 text-gray-500 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700"
+                    data-drawer-target="mobile-menu" data-drawer-show="mobile-menu" aria-controls="mobile-menu">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!-- Mobile Drawer -->
+<div id="mobile-menu" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full bg-white dark:bg-neutral-800 border-r border-gray-200 dark:border-neutral-700" tabindex="-1" aria-labelledby="drawer-label">
+    <div class="p-4 space-y-2">
+        <h5 id="drawer-label" class="text-base font-semibold text-gray-900 dark:text-white mb-4">カテゴリ</h5>
+        {{range .Categories}}
+        <a href="/components/{{.ID}}" 
+           class="block px-3 py-2 rounded-lg text-sm font-medium
+                  {{if eq $.CurrentCategory .ID}}
+                  bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300
+                  {{else}}
+                  text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700
+                  {{end}}">
+            {{.Name}}
+        </a>
+        {{end}}
+    </div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const exactMap = new Map([
+        ["Buttons", "ボタン"],
+        ["Forms", "フォーム"],
+        ["Cards", "カード"],
+        ["Alerts", "アラート"],
+        ["Modals", "モーダル"],
+        ["Badges", "バッジ"],
+        ["Tooltips", "ツールチップ"],
+        ["Progress", "プログレス"],
+        ["Dropdowns", "ドロップダウン"],
+        ["Tabs", "タブ"],
+        ["Breadcrumbs", "パンくず"],
+        ["Pagination", "ページネーション"],
+        ["Tables", "テーブル"],
+        ["Accordion", "アコーディオン"],
+        ["Default", "基本"],
+        ["Dark", "ダーク"],
+        ["Light", "ライト"],
+        ["Green", "グリーン"],
+        ["Red", "レッド"],
+        ["Yellow", "イエロー"],
+        ["Purple", "パープル"],
+        ["Blue", "ブルー"],
+        ["Small", "小"],
+        ["Large", "大"],
+        ["Extra Small", "極小"],
+        ["Extra Large", "特大"],
+        ["Base", "標準"],
+        ["Disabled button", "無効ボタン"],
+        ["Disabled outline", "無効アウトライン"],
+        ["Profile", "プロフィール"],
+        ["Settings", "設定"],
+        ["Messages", "メッセージ"],
+        ["Buy now", "購入"],
+        ["Choose plan", "プランを選択"],
+        ["Download", "ダウンロード"],
+        ["View examples", "例を見る"],
+        ["Getting Started", "はじめに"],
+        ["Start exploring", "まずは見る"],
+        ["Back to top", "トップに戻る"],
+        ["Built with Tailwind CSS", "Tailwind CSS ベース"],
+        ["Interactive Examples", "インタラクティブな実例"],
+        ["Dark Mode Support", "ダークモード対応"],
+        ["Default Buttons", "基本ボタン"],
+        ["Button Sizes", "サイズ"],
+        ["Outline Buttons", "アウトライン"],
+        ["Buttons with Icons", "アイコン付き"],
+        ["Button Groups", "ボタングループ"],
+        ["Disabled State", "無効状態"],
+        ["Text Inputs", "テキスト入力"],
+        ["Input Sizes", "入力サイズ"],
+        ["Textarea", "テキストエリア"],
+        ["Select", "セレクト"],
+        ["Checkboxes", "チェックボックス"],
+        ["Radio Buttons", "ラジオボタン"],
+        ["Toggle Switch", "トグルスイッチ"],
+        ["File Input", "ファイル入力"],
+        ["Simple Card", "シンプルカード"],
+        ["Card with Image", "画像付きカード"],
+        ["Horizontal Card", "横並びカード"],
+        ["Card with List", "リスト付きカード"],
+        ["Pricing Card", "価格カード"],
+        ["Default Alerts", "基本アラート"],
+        ["Alerts with Icons", "アイコン付きアラート"],
+        ["Bordered Alerts", "境界線ありアラート"],
+        ["Dismissible Alerts", "閉じられるアラート"],
+        ["Additional Content", "追加コンテンツ"],
+        ["Default Modal", "基本モーダル"],
+        ["Modal Sizes", "モーダルサイズ"],
+        ["Form Modal", "フォームモーダル"],
+        ["Confirmation Modal", "確認モーダル"],
+        ["Default Badges", "基本バッジ"],
+        ["Large Badges", "大きいバッジ"],
+        ["Badges with Icons", "アイコン付きバッジ"],
+        ["Pill Badges", "ピル型バッジ"],
+        ["Badges as Links", "リンクバッジ"],
+        ["Notification Badge", "通知バッジ"],
+        ["Default Tooltip", "基本ツールチップ"],
+        ["Tooltip Positions", "ツールチップ位置"],
+        ["Tooltip Styles", "ツールチップスタイル"],
+        ["Default Progress Bar", "基本プログレスバー"],
+        ["Progress with Labels", "ラベル付きプログレス"],
+        ["Progress Sizes", "プログレスサイズ"],
+        ["Spinner", "スピナー"],
+        ["Default Dropdown", "基本ドロップダウン"],
+        ["Dropdown with Divider", "区切り線付きドロップダウン"],
+        ["Dropdown with Header", "ヘッダー付きドロップダウン"],
+        ["Default Tabs", "基本タブ"],
+        ["Pills Tabs", "ピルタブ"],
+        ["Default Breadcrumb", "基本パンくず"],
+        ["Solid Background", "背景あり"],
+        ["Default Pagination", "基本ページネーション"],
+        ["Pagination with Icons", "アイコン付きページネーション"],
+        ["Table Data Navigation", "テーブル用ナビ"],
+        ["Default Table", "基本テーブル"],
+        ["Striped Rows", "ストライプ"],
+        ["Hoverable Rows", "ホバー"],
+        ["Default Accordion", "基本アコーディオン"],
+        ["Always Open", "常に開く"],
+        ["Flowbite Component Showcase", "Flowbite コンポーネント一覧"],
+        ["Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.", "Flowbite は Tailwind CSS 上で動作するオープンソースの UI コンポーネントライブラリです。"],
+        ["Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.", "Flowbite は Figma を使って設計されており、表示内容とデザインが対応しています。"],
+        ["Learn more about these technologies:", "関連技術の詳細:"],
+        ["Use accordion components to show and hide content with collapsible panels or sections.", "アコーディオンでコンテンツの表示・非表示を切り替えられます。"],
+        ["Use badge components to indicate counts, labels, status, and more with support for various colors and sizes.", "バッジは件数、ラベル、状態表示などに利用できます。"],
+        ["Use breadcrumbs to show the current page location and allow users to navigate back through the hierarchy.", "パンくずは現在位置を示し、階層移動を助けます。"],
+        ["Use dropdown menus to show a list of options or actions when clicking on a button or link.", "ドロップダウンはクリック時に選択肢や操作を表示します。"],
+        ["Use form elements like text inputs, textareas, checkboxes, radio buttons, file uploads, and more.", "フォーム要素として入力欄、テキストエリア、チェック、ラジオ、ファイルなどを利用できます。"],
+        ["Use modal dialogs to show important information to your users or get their input without leaving the current page.", "モーダルは画面遷移せずに重要情報の表示や入力を行うために使います。"],
+        ["Use pagination to split large amounts of data into multiple pages with navigation controls.", "ページネーションは大量データを複数ページに分けて表示します。"],
+        ["Use progress indicators to show the completion rate of data or the loading state of a component.", "プログレス表示は進捗率や読み込み状態を示します。"],
+        ["Use tables to organize and display data in a structured format with rows and columns.", "テーブルは行と列でデータを整理して表示します。"],
+        ["Use tabs to organize content into different sections that users can navigate between.", "タブはコンテンツをセクションごとに切り替えて表示します。"],
+        ["Use tooltips to show additional context or information when hovering over elements.", "ツールチップはホバー時に補足情報を表示します。"]
+        ,["Your email", "メールアドレス"]
+        ,["Your password", "パスワード"]
+        ,["Disabled input", "無効入力"]
+        ,["Disabled value", "無効値"]
+        ,["Small input", "小サイズ入力"]
+        ,["Base input", "標準入力"]
+        ,["Large input", "大サイズ入力"]
+        ,["Your message", "メッセージ"]
+        ,["Write your thoughts here...", "ここに入力してください..."]
+        ,["Select your country", "国を選択"]
+        ,["Choose a country", "国を選択してください"]
+        ,["United States", "アメリカ"]
+        ,["Canada", "カナダ"]
+        ,["France", "フランス"]
+        ,["Germany", "ドイツ"]
+        ,["I agree to the terms and conditions", "利用規約に同意します"]
+        ,["I want to get promotional offers", "お知らせを受け取る"]
+        ,["I am eligible to work in the US", "就業資格があります"]
+        ,["Credit Card", "クレジットカード"]
+        ,["Bank Transfer", "銀行振込"]
+        ,["Toggle me", "切り替え"]
+        ,["Checked toggle", "オン状態"]
+        ,["Upload file", "ファイルをアップロード"]
+        ,["SVG, PNG, JPG or GIF (MAX. 800x400px)", "SVG、PNG、JPG、GIF（最大 800x400px）"]
+    ]);
+
+    const tokenMap = [
+        [/\bDefault\b/g, "基本"],
+        [/\bHover\b/g, "ホバー"],
+        [/\bClose\b/g, "閉じる"],
+        [/\bCancel\b/g, "キャンセル"],
+        [/\bSave\b/g, "保存"],
+        [/\bDelete\b/g, "削除"],
+        [/\bNext\b/g, "次へ"],
+        [/\bPrevious\b/g, "前へ"],
+        [/\bHome\b/g, "ホーム"],
+        [/\bApplication\b/g, "アプリケーション"],
+        [/\bProject\b/g, "プロジェクト"],
+        [/\bInfo\b/g, "情報"],
+        [/\bSuccess\b/g, "成功"],
+        [/\bWarning\b/g, "注意"],
+        [/\bDanger\b/g, "危険"],
+        [/\bError\b/g, "エラー"],
+        [/\bSettings\b/g, "設定"]
+    ];
+
+    const translateText = (text) => {
+        const trimmed = text.trim();
+        if (!trimmed) return text;
+        if (exactMap.has(trimmed)) {
+            return text.replace(trimmed, exactMap.get(trimmed));
+        }
+        let out = text;
+        for (const [re, jp] of tokenMap) {
+            out = out.replace(re, jp);
+        }
+        return out;
+    };
+
+    const translateAttributes = () => {
+        const attrs = ["title", "placeholder", "aria-label"];
+        document.querySelectorAll("*").forEach((el) => {
+            attrs.forEach((a) => {
+                const v = el.getAttribute(a);
+                if (!v) return;
+                el.setAttribute(a, translateText(v));
+            });
+        });
+    };
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const blocked = new Set(["SCRIPT", "STYLE", "CODE", "PRE", "SVG"]);
+    let node;
+    while ((node = walker.nextNode())) {
+        if (!node.parentElement) continue;
+        if (blocked.has(node.parentElement.tagName)) continue;
+        node.nodeValue = translateText(node.nodeValue);
+    }
+    translateAttributes();
+});
+</script>
+{{end}}
