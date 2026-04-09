@@ -1,0 +1,187 @@
+{{ define "users.html" }}
+{{ template "header" . }}
+
+<!-- ページヘッダ -->
+<div class="flex items-center justify-between mb-6">
+  <h1 class="text-2xl font-bold text-gray-800">ユーザ一覧</h1>
+  <a href="/users/new"
+     class="py-2 px-3 inline-flex items-center gap-x-1.5 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 focus:outline-hidden focus:bg-blue-700 transition-colors">
+    <span class="material-symbols-outlined" style="font-size:16px">add</span>
+    新規作成
+  </a>
+</div>
+
+{{- if .flash }}
+  {{- if eq .flash "created" }}
+  <div id="alert-created" class="mb-4 bg-teal-50 border border-teal-200 text-sm text-teal-800 rounded-lg p-4 flex items-center justify-between gap-x-3" role="alert">
+    <div class="flex items-center gap-x-2">
+      <span class="material-symbols-outlined text-teal-500 shrink-0" style="font-size:18px">check_circle</span>
+      ユーザを登録しました。
+    </div>
+    <button type="button" class="hs-remove-element shrink-0 size-5 inline-flex items-center justify-center rounded-lg text-teal-500 hover:text-teal-700 focus:outline-hidden" data-hs-remove-element="#alert-created" aria-label="閉じる">
+      <span class="material-symbols-outlined" style="font-size:16px">close</span>
+    </button>
+  </div>
+  {{- else if eq .flash "updated" }}
+  <div id="alert-updated" class="mb-4 bg-blue-50 border border-blue-200 text-sm text-blue-800 rounded-lg p-4 flex items-center justify-between gap-x-3" role="alert">
+    <div class="flex items-center gap-x-2">
+      <span class="material-symbols-outlined text-blue-500 shrink-0" style="font-size:18px">check_circle</span>
+      ユーザ情報を更新しました。
+    </div>
+    <button type="button" class="hs-remove-element shrink-0 size-5 inline-flex items-center justify-center rounded-lg text-blue-500 hover:text-blue-700 focus:outline-hidden" data-hs-remove-element="#alert-updated" aria-label="閉じる">
+      <span class="material-symbols-outlined" style="font-size:16px">close</span>
+    </button>
+  </div>
+  {{- else if eq .flash "deleted" }}
+  <div id="alert-deleted" class="mb-4 bg-yellow-50 border border-yellow-200 text-sm text-yellow-800 rounded-lg p-4 flex items-center justify-between gap-x-3" role="alert">
+    <div class="flex items-center gap-x-2">
+      <span class="material-symbols-outlined text-yellow-500 shrink-0" style="font-size:18px">delete</span>
+      ユーザを削除しました。
+    </div>
+    <button type="button" class="hs-remove-element shrink-0 size-5 inline-flex items-center justify-center rounded-lg text-yellow-500 hover:text-yellow-700 focus:outline-hidden" data-hs-remove-element="#alert-deleted" aria-label="閉じる">
+      <span class="material-symbols-outlined" style="font-size:16px">close</span>
+    </button>
+  </div>
+  {{- end }}
+{{- end }}
+
+{{- if .error }}
+<div class="mb-4 bg-red-50 border border-red-200 text-sm text-red-800 rounded-lg p-4 flex items-center gap-x-2" role="alert">
+  <span class="material-symbols-outlined text-red-500 shrink-0" style="font-size:18px">error</span>
+  {{ .error }}
+</div>
+{{- end }}
+
+<!-- テーブルカード -->
+<div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden">
+  <!-- カードヘッダ -->
+  <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+    <h2 class="text-sm font-semibold text-gray-800">登録ユーザ</h2>
+    {{- if .users }}
+    <span class="inline-flex items-center gap-x-1.5 py-1 px-2.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">{{ len .users }} 件</span>
+    {{- end }}
+  </div>
+  {{- if .users }}
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider w-16">ID</th>
+          <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">名前</th>
+          <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">メールアドレス</th>
+          <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">登録日時</th>
+          <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-32">操作</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        {{- range .users }}
+        <tr class="hover:bg-gray-50 transition-colors">
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400 font-mono">{{ .id }}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">{{ .name }}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ .email }}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">{{ .created_at }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center justify-center gap-x-2">
+              <a href="/users/{{ .id }}/edit"
+                 class="py-1.5 px-2.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-md border border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100 focus:outline-hidden focus:bg-blue-100 transition-colors">
+                <span class="material-symbols-outlined" style="font-size:14px">edit</span> 編集
+              </a>
+              <button type="button"
+                      data-delete-user
+                      data-user-id="{{ .id }}"
+                      data-user-name="{{ .name }}"
+                      aria-haspopup="dialog"
+                      aria-expanded="false"
+                      aria-controls="delete-confirm-modal"
+                      data-hs-overlay="#delete-confirm-modal"
+                      class="py-1.5 px-2.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-md border border-red-200 bg-red-50 text-red-600 hover:bg-red-100 focus:outline-hidden focus:bg-red-100 transition-colors">
+                <span class="material-symbols-outlined" style="font-size:14px">delete</span> 削除
+              </button>
+            </div>
+          </td>
+        </tr>
+        {{- end }}
+      </tbody>
+    </table>
+  </div>
+  {{- else }}
+  <div class="px-6 py-20 text-center">
+    <div class="size-16 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-4">
+      <span class="material-symbols-outlined text-gray-400" style="font-size:32px">person</span>
+    </div>
+    <p class="text-sm font-semibold text-gray-600 mb-1">ユーザが登録されていません</p>
+    <p class="text-sm text-gray-400 mb-5">最初のユーザを作成してみましょう。</p>
+    <a href="/users/new"
+       class="py-2 px-3 inline-flex items-center gap-x-1.5 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 transition-colors">
+      <span class="material-symbols-outlined" style="font-size:16px">add</span>
+      新規作成する
+    </a>
+  </div>
+  {{- end }}
+</div>
+
+
+<!-- 削除確認モーダル -->
+<div id="delete-confirm-modal"
+     class="hs-overlay hidden size-full fixed top-0 start-0 z-60 overflow-x-hidden overflow-y-auto pointer-events-none"
+     role="dialog" tabindex="-1" aria-labelledby="delete-confirm-modal-label">
+  <div class="hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-md sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
+    <div class="w-full flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl pointer-events-auto">
+      <!-- モーダルヘッダ -->
+      <div class="flex justify-between items-center py-3 px-5 border-b border-gray-200">
+        <h3 id="delete-confirm-modal-label" class="text-sm font-semibold text-gray-800">削除の確認</h3>
+        <button type="button"
+                class="size-8 inline-flex justify-center items-center rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 transition-colors"
+                aria-label="閉じる"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="delete-confirm-modal"
+                data-hs-overlay="#delete-confirm-modal">
+          <span class="material-symbols-outlined" style="font-size:16px">close</span>
+        </button>
+      </div>
+      <!-- モーダルボディ -->
+      <div class="p-5">
+        <div class="flex gap-x-4">
+          <div class="shrink-0 size-10 rounded-full bg-red-100 flex items-center justify-center">
+            <span class="material-symbols-outlined text-red-600" style="font-size:20px">delete</span>
+          </div>
+          <div>
+            <p class="text-sm text-gray-600">以下のユーザを削除します。この操作は取り消せません。</p>
+            <p id="delete-confirm-username" class="mt-1.5 text-sm font-semibold text-gray-800"></p>
+          </div>
+        </div>
+      </div>
+      <!-- モーダルフッタ -->
+      <div class="flex justify-end items-center gap-x-2 py-3 px-5 border-t border-gray-200">
+        <button type="button"
+                class="py-2 px-3 inline-flex items-center text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 transition-colors"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="delete-confirm-modal"
+                data-hs-overlay="#delete-confirm-modal">
+          キャンセル
+        </button>
+        <form id="delete-confirm-form" method="POST" action="">
+          <button type="submit"
+                  class="py-2 px-3 inline-flex items-center gap-x-1.5 text-sm font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 active:bg-red-800 focus:outline-hidden focus:bg-red-700 transition-colors">
+            <span class="material-symbols-outlined" style="font-size:16px">delete</span>
+            削除する
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-delete-user]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.getElementById('delete-confirm-username').textContent = '「' + this.dataset.userName + '」';
+      document.getElementById('delete-confirm-form').action = '/users/' + this.dataset.userId + '/delete';
+    });
+  });
+</script>
+
+{{ template "footer" . }}
+{{ end }}
